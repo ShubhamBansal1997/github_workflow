@@ -19,7 +19,7 @@ jobs:
         id: latest_release
         run: |
           LATEST_RC=$(git for-each-ref --format="%(refname)|%(contents)" --sort=-creatordate --count=2  "refs/tags/rc-*" | head -1 | tail -1)
-          echo ::set-output name=release_branch::$(echo $LATEST_RC | awk -F ' '  '{print $NF}')
+          echo "::set-output name=release_branch::$(echo $LATEST_RC | awk -F ' '  '{print $NF}')"
       - name: Create Pull Request
         uses: devops-infra/action-pull-request@v0.4.2
         with:
